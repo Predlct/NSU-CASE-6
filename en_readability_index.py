@@ -1,5 +1,5 @@
 from textblob import TextBlob
-
+import en_local
 
 def get_english_text_stats(input_text):
     text = input_text.replace('!!!', '!')
@@ -21,27 +21,27 @@ def get_english_text_stats(input_text):
     text_objectivity_analysis = (1 - blob.subjectivity) * 100
     text_sentiment_analysis = blob.sentiment.polarity
 
-    print(f'Кол-во предложений: {sentences_count}')
-    print(f'Кол-во слов: {words_count}')
-    print(f'Кол-во слогов: {syllables_count}')
-    print(f'Средняя длина предложения в словах: {average_sentence_length}')
-    print(f'Средняя длина слова в слогах: {average_word_length}')
-    print(f'Индекс удобочитаемости Флеша: {readability_index}')
+    print(f'{en_local.QUANTITY_SENTENCES}: {sentences_count}')
+    print(f'{en_local.QUANTITY_WORDS}: {words_count}')
+    print(f'{en_local.QUANTITY_SYLLABLES}: {syllables_count}')
+    print(f'{en_local.AVERAGE_LEN_SENTENCE_ON_WORDS}: {average_sentence_length}')
+    print(f'{en_local.AVERAGE_LEN_WORD_ON_SYLLABLES}: {average_word_length}')
+    print(f'{en_local.READABILITY_INDEX}: {readability_index}')
 
     if readability_index > 80:
-        print('Читается очень легко (для младших школьников).')
+        print(f'{en_local.MORE_THEN_80}')
     elif 50 < readability_index <= 80:
-        print('Простой текст (для школьников).')
+        print(f'{en_local.LESS_THEN_80}')
     elif 25 < readability_index <= 50:
-        print('Текст немного трудно читать (для студентов).')
+        print(f'{en_local.LESS_THEN_50}')
     else:
-        print('Текст трудно читается (для выпускников ВУЗов).')
+        print(f'{en_local.LESS_THEN_25}')
 
-    print(f'Объективность текста: {text_objectivity_analysis}%')
+    print(f'{en_local.OBJECTIVITY}: {text_objectivity_analysis}%')
 
     if text_sentiment_analysis > 0.5:
-        print('Положительная тональность.')
+        print(f'{en_local.POSITIVE}')
     elif 0 < text_sentiment_analysis <= 0.5:
-        print('Нейтральная тональность')
+        print(f'{en_local.NEUTRAL}')
     else:
-        print('Отрицательная тональность.')
+        print(f'{en_local.NEGATIVE}')
