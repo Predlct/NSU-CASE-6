@@ -1,9 +1,11 @@
 from textblob import TextBlob
 import en_local
 
+
 def get_text_input():
     """Gets the text"""
     return input("Waiting for the text: ")
+
 
 def analyze_text_stats(input_text):
     """Removes duplicate characters. Counts the number of sentences, words and syllables in the text."""
@@ -19,11 +21,13 @@ def analyze_text_stats(input_text):
     syllables_count = cnt / words_count
     return sentences_count, words_count, syllables_count
 
+
 def calculate_average_lengths(sentences_count, words_count, syllables_count):
     """Calculates the average length of a sentence and a word."""
     average_sentence_length = words_count / sentences_count
     average_word_length = syllables_count / words_count
     return average_sentence_length, average_word_length
+
 
 def calculate_readability_and_sentiment(words_count, sentences_count, syllables_count, blob):
     """"Calculates the index of readability, objectivity and mood of the text."""
@@ -36,6 +40,7 @@ def calculate_readability_and_sentiment(words_count, sentences_count, syllables_
     sentiment_analysis = blob.sentiment.polarity
 
     return readability_index, objectivity_analysis, sentiment_analysis
+
 
 def print_statistics(sentences_count, words_count, syllables_count,
                      average_sentence_length, average_word_length,
@@ -66,6 +71,7 @@ def print_statistics(sentences_count, words_count, syllables_count,
     else:
         print(f'{en_local.NEGATIVE}')
 
+
 def main():
     """Main function for the text analysis"""
     input_text = get_text_input()
@@ -80,5 +86,6 @@ def main():
     print_statistics(sentences_count, words_count, syllables_count,
                      average_sentence_length, average_word_length,
                      readability_index, objectivity_analysis, sentiment_analysis)
+
 
 if __name__ == "__main__": main()
