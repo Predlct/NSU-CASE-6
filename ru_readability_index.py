@@ -23,7 +23,6 @@ def get_russian_text_stats(input_text):
 
     translator = Translator(from_lang='RU', to_lang="EN")
     text = translator.translate(text)
-    print(text)
     translate_blob = TextBlob(text)
     text_objectivity_analysis = (1 - translate_blob.subjectivity) * 100
     text_sentiment_analysis = translate_blob.sentiment.polarity
