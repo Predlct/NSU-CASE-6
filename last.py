@@ -1,5 +1,5 @@
 from textblob import TextBlob
-import en_local
+import ru_local
 
 
 def get_text_input():
